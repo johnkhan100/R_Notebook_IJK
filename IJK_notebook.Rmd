@@ -1,0 +1,35 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(haven)
+cars <- read_sas("http://www.principlesofeconometrics.com/sas/cars.sas7bdat", 
+    NULL)
+```
+
+```{r}
+
+library(tidyverse)
+
+#library(dplyr)
+#library(ggplot2)
+
+cars %>%
+ filter(CYL >= 4L & CYL <= 8L) %>%
+ filter(ENG >= 100L & ENG <= 455L) %>%
+ 
+    filter(WGT >= 2001L & WGT <= 5140L) %>%
+ ggplot() +
+ aes(x = MPG, y = CYL, fill = ENG) +
+ geom_boxplot() +
+ scale_fill_gradient() +
+ theme_minimal()
+
+```
+
+
+
+
